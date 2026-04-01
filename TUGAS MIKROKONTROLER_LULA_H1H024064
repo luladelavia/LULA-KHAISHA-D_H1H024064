@@ -1,0 +1,36 @@
+// --- KONFIGURASI PIN ---
+int barat[]   = {4, 3, 2};    // Merah, Kuning, Hijau
+int timur[]   = {10, 9, 8};   // Merah, Kuning, Hijau
+int selatan[] = {7, 6, 5};    // Merah, Kuning, Hijau
+int utara[]   = {13, 12, 11}; // Merah, Kuning, Hijau
+
+void setup() {
+  for (int i = 2; i <= 13; i++) {
+    pinMode(i, OUTPUT);
+  }
+  // Awal: Semua Merah Nyala
+  digitalWrite(4, HIGH); digitalWrite(10, HIGH);
+  digitalWrite(7, HIGH); digitalWrite(13, HIGH);
+}
+
+void loop() {
+  // Urutan bergantian
+  jalankan(barat);
+  jalankan(timur);
+  jalankan(selatan);
+  jalankan(utara);
+}
+
+void jalankan(int pin[]) {
+  digitalWrite(pin[0], LOW);  // Merah mati
+  digitalWrite(pin[2], HIGH); // Hijau nyala
+  delay(12000);               // 12 Detik
+  
+  digitalWrite(pin[2], LOW);  // Hijau mati
+  digitalWrite(pin[1], HIGH); // Kuning nyala
+  delay(3000);                // 3 Detik
+  
+  digitalWrite(pin[1], LOW);  // Kuning mati
+  digitalWrite(pin[0], HIGH); // Merah lagi
+  delay(1000);                // Jeda aman
+}
